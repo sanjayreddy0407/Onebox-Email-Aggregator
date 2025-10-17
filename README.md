@@ -289,7 +289,7 @@ docker-compose restart elasticsearch
 
 ## 📊 Performance Considerations
 
-- **Email Volume**: Tested with 10,000+ emails
+
 - **Search Speed**: ~50ms average query time
 - **IMAP Connections**: Uses keep-alive to maintain persistent connections
 - **AI Processing**: ~2-3 seconds per email for categorization
