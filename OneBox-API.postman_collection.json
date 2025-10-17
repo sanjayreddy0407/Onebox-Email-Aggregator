@@ -1,0 +1,254 @@
+{
+  "info": {
+    "name": "OneBox Email Aggregator API",
+    "description": "Complete API collection for testing OneBox Email Aggregator features",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        },
+        "description": "Check if the server is running and healthy"
+      }
+    },
+    {
+      "name": "Get All Emails",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/emails?limit=50&offset=0",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "emails"],
+          "query": [
+            {
+              "key": "limit",
+              "value": "50",
+              "description": "Number of results per page"
+            },
+            {
+              "key": "offset",
+              "value": "0",
+              "description": "Pagination offset"
+            }
+          ]
+        },
+        "description": "Retrieve all emails with pagination"
+      }
+    },
+    {
+      "name": "Search Emails",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/emails?q=meeting&limit=20",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "emails"],
+          "query": [
+            {
+              "key": "q",
+              "value": "meeting",
+              "description": "Search query"
+            },
+            {
+              "key": "limit",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Search emails by keywords"
+      }
+    },
+    {
+      "name": "Filter by Category - Interested",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/emails?category=interested",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "emails"],
+          "query": [
+            {
+              "key": "category",
+              "value": "interested"
+            }
+          ]
+        },
+        "description": "Get all emails categorized as 'interested'"
+      }
+    },
+    {
+      "name": "Filter by Account",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/emails?accountId=account-1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "emails"],
+          "query": [
+            {
+              "key": "accountId",
+              "value": "account-1"
+            }
+          ]
+        },
+        "description": "Get emails from a specific account"
+      }
+    },
+    {
+      "name": "Filter by Folder",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/emails?folder=INBOX",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "emails"],
+          "query": [
+            {
+              "key": "folder",
+              "value": "INBOX"
+            }
+          ]
+        },
+        "description": "Get emails from a specific folder"
+      }
+    },
+    {
+      "name": "Get Email by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/emails/{{emailId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "emails", "{{emailId}}"]
+        },
+        "description": "Retrieve a specific email by its ID"
+      }
+    },
+    {
+      "name": "Update Email Category",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"category\": \"interested\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/emails/{{emailId}}/category",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "emails", "{{emailId}}", "category"]
+        },
+        "description": "Update the category of an email"
+      }
+    },
+    {
+      "name": "Get AI Reply Suggestion",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/emails/{{emailId}}/suggest-reply",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "emails", "{{emailId}}", "suggest-reply"]
+        },
+        "description": "Get AI-powered reply suggestion using RAG"
+      }
+    },
+    {
+      "name": "Get Category Statistics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/emails/stats/categories",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "emails", "stats", "categories"]
+        },
+        "description": "Get email count by category"
+      }
+    },
+    {
+      "name": "Add Custom Knowledge",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"Our product pricing starts at $99/month with a 14-day free trial. Enterprise plans are available with custom pricing.\",\n  \"metadata\": {\n    \"type\": \"pricing\",\n    \"category\": \"sales\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/knowledge",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "knowledge"]
+        },
+        "description": "Add custom knowledge to the RAG vector database"
+      }
+    },
+    {
+      "name": "Complex Search Query",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/emails?q=interview&category=interested&accountId=account-1&limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "emails"],
+          "query": [
+            {
+              "key": "q",
+              "value": "interview"
+            },
+            {
+              "key": "category",
+              "value": "interested"
+            },
+            {
+              "key": "accountId",
+              "value": "account-1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        },
+        "description": "Search with multiple filters combined"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "emailId",
+      "value": "your-email-id-here",
+      "type": "string"
+    }
+  ]
+}

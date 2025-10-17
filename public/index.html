@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OneBox - Email Aggregator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>📧 OneBox Email Aggregator</h1>
+      <p class="subtitle">AI-Powered Email Management</p>
+    </header>
+
+    <!-- Search & Filter Bar -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search emails by subject, sender, or content..."
+        class="search-input"
+      >
+      <button onclick="searchEmails()" class="btn btn-primary">Search</button>
+    </div>
+
+    <div class="filters">
+      <select id="categoryFilter" class="filter-select">
+        <option value="">All Categories</option>
+        <option value="interested">Interested</option>
+        <option value="meeting_booked">Meeting Booked</option>
+        <option value="not_interested">Not Interested</option>
+        <option value="spam">Spam</option>
+        <option value="out_of_office">Out of Office</option>
+        <option value="uncategorized">Uncategorized</option>
+      </select>
+
+      <select id="accountFilter" class="filter-select">
+        <option value="">All Accounts</option>
+        <option value="account-1">Account 1</option>
+        <option value="account-2">Account 2</option>
+      </select>
+
+      <button onclick="applyFilters()" class="btn btn-secondary">Apply Filters</button>
+      <button onclick="clearFilters()" class="btn btn-secondary">Clear</button>
+    </div>
+
+    <!-- Stats Dashboard -->
+    <div class="stats" id="stats">
+      <div class="stat-card">
+        <div class="stat-value" id="totalEmails">-</div>
+        <div class="stat-label">Total Emails</div>
+      </div>
+      <div class="stat-card interested">
+        <div class="stat-value" id="interestedCount">-</div>
+        <div class="stat-label">Interested</div>
+      </div>
+      <div class="stat-card meeting">
+        <div class="stat-value" id="meetingCount">-</div>
+        <div class="stat-label">Meetings</div>
+      </div>
+      <div class="stat-card spam">
+        <div class="stat-value" id="spamCount">-</div>
+        <div class="stat-label">Spam</div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Email List -->
+      <div class="email-list" id="emailList">
+        <div class="loading" id="loading">Loading emails...</div>
+      </div>
+
+      <!-- Email Detail -->
+      <div class="email-detail" id="emailDetail">
+        <div class="placeholder">
+          <h3>Select an email to view details</h3>
+          <p>Click on any email from the list to see its full content</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
